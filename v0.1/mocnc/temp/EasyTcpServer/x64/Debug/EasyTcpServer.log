@@ -1,0 +1,5 @@
+﻿E:\VS2019\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(504,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
+E:\VS2019\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(505,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  main.cpp
+E:\Code\C++百万并发通信\v0.1\mocnc\EasyTcpServer\main.cpp(77,47): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  EasyTcpServer.vcxproj -> E:\Code\C++百万并发通信\v0.1\mocnc\bin\EasyTcpServer\x64\Debug\EasyTcpServer.exe
