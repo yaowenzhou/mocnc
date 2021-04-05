@@ -1,4 +1,12 @@
 /*
+ * @Author       : yaowenzhou
+ * @Date         : 2021-04-01 15:39:28
+ * @LastEditors  : yaowenzhou
+ * @LastEditTime : 2021-04-04 19:59:25
+ * @version      : 
+ * @Description  : 
+ */
+/*
  * WIN32_LEAN_AND_MEAN
  * 宏编译 预处理头 ，经常可以在stdafx.h文件中出现宏定义#define
  * WIN32_LEAN_AND_MEAN，
@@ -59,7 +67,7 @@ int main() {
     printf("Please enter a command%d:\n", count++);
     memset(cmdBuf, 0, 1024);
     // 3. 读取指令
-    // 如果想要读取带有空格的字符串，此处不能使用scanf和scanf_s，它们读取到空格就会停止
+    // 如果想要读取带有空格的字符串，此处不能直接使用scanf和scanf_s，它们读取到空格就会停止
     // scanf_s("%s", cmdBuf, 1023);
     scanf_s("%[^\n]", cmdBuf, 1023);
     scanf_s("%c", &a, 1);

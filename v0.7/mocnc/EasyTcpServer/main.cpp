@@ -28,7 +28,7 @@ std::unordered_set<SOCKET> expSockets;
 // -1，此时需要在主处理流程中将通信socket从相应的集合中移除
 int doRead(SOCKET _cSock) {
   char recvBuf[1024] = {};
-  // 5. 接收客户端数据，如果接收到的数据长度为0，则退出循环
+  // 5. 接收客户端数据，如果接收到的数据长度为0，则退出程序
   if (recv(_cSock, recvBuf, sizeof(DataHeader), 0) <= 0) {
     printf("Client has exit, task end.\n");
     return -1;

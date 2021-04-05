@@ -61,7 +61,7 @@ int main() {
     printf("Please enter a command%d:\n", count++);
     memset(cmdBuf, 0, 1024);
     // 3. 读取指令
-    // 如果想要读取带有空格的字符串，此处不能使用scanf和scanf_s，它们读取到空格就会停止
+    // 如果想要读取带有空格的字符串，此处不能直接使用scanf和scanf_s，它们读取到空格就会停止
     // scanf_s("%s", cmdBuf, 1023);
     scanf_s("%[^\n]", cmdBuf, 1023);
     scanf_s("%c", &a, 1);

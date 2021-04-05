@@ -1,4 +1,0 @@
-﻿E:\VS2019\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(504,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
-E:\VS2019\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(505,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  main.cpp
-  EasyTcpClient.vcxproj -> E:\Code\C++百万并发通信\v0.1\mocnc\bin\EasyTcpClient\x64\Debug\EasyTcpClient.exe
