@@ -204,8 +204,7 @@ int main() {
         expSockets.erase(readSet.fd_array[i]);
       }
     }
-
-    printf("INFO|Handle other business....\n");
+    printf("INFO|Handle other business...\n");
   }
   // 关闭所有的socket
   // 一般来说是走不到这一步的，但是为了容错，这里添加上

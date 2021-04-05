@@ -15,6 +15,7 @@
 
 #include <cstdio>
 #include <cstdlib>
+#include <thread>
 
 #include "../Common/Data.h"
 
@@ -68,6 +69,40 @@ int doRead(SOCKET _cSock) {
   return 0;
 }
 
+bool g_Run = true;
+void readCmd(SOCKET _sock) {
+  char cmdBuf[1024] = {};
+  int count = 0;
+  while (true) {
+    printf("Please enter a command%d:\n", count++);
+    memset(cmdBuf, 0, 1024);
+    // 3. 读取指令
+    // 如果想要读取带有空格的字符串，此处不能直接使用scanf和scanf_s，它们读取到空格就会停止
+    // scanf_s("%s", cmdBuf, 1023);
+    scanf_s("%[^\n]%*c", cmdBuf, 1023);
+    // gets_s(cmdBuf, 1023); // 最后一个字符位置留给'\0'
+    DataHeader retHeader = {};
+    if (strcmp(cmdBuf, "exit") == 0) {
+      printf("Exiting...\n");
+      g_Run = false;
+      return;
+    } else if (strcmp(cmdBuf, "login") == 0) {
+      Login login;
+      strcpy_s(login.userName, "xiaoyao");
+      strcpy_s(login.password, "123456");
+      send(_sock, (const char *)&login, sizeof(Login), 0);
+    } else if (strcmp(cmdBuf, "logout") == 0) {
+      Logout logout;
+      strcpy_s(logout.userName, "xiaoyao");
+      DataHeader dataHeader = {sizeof(Logout), CMD_LOGOUT};
+      send(_sock, (const char *)&logout, sizeof(Logout), 0);
+    } else {
+      printf("Unsupported command, please retry.\n");
+      continue;
+    }
+  }
+}
+
 int main() {
   // 启动WindowsSocket 2.x 的网络编程环境
   WORD ver = MAKEWORD(2, 2);
@@ -103,13 +138,16 @@ int main() {
     printf("SUCCESS|%s:%d: connect success.\n", __FILE__, __LINE__);
   }
 
-  char cmdBuf[1024] = {};
-  int count = 0;
+  // 启动线程
+  std::thread cmdThread(readCmd, _sock);
+  // 将子线程与主线程分离
+  cmdThread.detach();
+
   fd_set readSet = {};
-  FD_ZERO(&readSet);
-  FD_SET(_sock, &readSet);
   timeval t = {1, 0};
-  while (true) {
+  while (g_Run) {
+    FD_ZERO(&readSet);
+    FD_SET(_sock, &readSet);
     // 考虑到只有一个需要监听的套接字，此处就不清空以及重新设置readSet了
     int ret = select(_sock, &readSet, nullptr, nullptr, &t);
     if (ret < 0) {
@@ -125,31 +163,7 @@ int main() {
         }
       }
     }
-    printf("Please enter a command%d:\n", count++);
-    memset(cmdBuf, 0, 1024);
-    // 3. 读取指令
-    // 如果想要读取带有空格的字符串，此处不能直接使用scanf和scanf_s，它们读取到空格就会停止
-    // scanf_s("%s", cmdBuf, 1023);
-    scanf_s("%[^\n]%*c", cmdBuf, 1023);
-    // gets_s(cmdBuf, 1023); // 最后一个字符位置留给'\0'
-    DataHeader retHeader = {};
-    if (strcmp(cmdBuf, "exit") == 0) {
-      printf("Exiting...\n");
-      break;
-    } else if (strcmp(cmdBuf, "login") == 0) {
-      Login login;
-      strcpy_s(login.userName, "xiaoyao");
-      strcpy_s(login.password, "123456");
-      send(_sock, (const char *)&login, sizeof(Login), 0);
-    } else if (strcmp(cmdBuf, "logout") == 0) {
-      Logout logout;
-      strcpy_s(logout.userName, "xiaoyao");
-      DataHeader dataHeader = {sizeof(Logout), CMD_LOGOUT};
-      send(_sock, (const char *)&logout, sizeof(Logout), 0);
-    } else {
-      printf("Unsupported command, please retry.\n");
-      continue;
-    }
+    printf("INFO|Handle other business...\n");
   }
 
   // 4. 关闭套接字closesocket

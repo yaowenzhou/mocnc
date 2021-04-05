@@ -2,7 +2,7 @@
  * @Author       : yaowenzhou
  * @Date         : 2021-03-31 16:05:50
  * @LastEditors  : yaowenzhou
- * @LastEditTime : 2021-04-05 14:24:40
+ * @LastEditTime : 2021-04-05 15:29:01
  * @version      : 
  * @Description  : 
 -->
@@ -25,4 +25,5 @@ v0.8
 客户端升级为select网络模型(增加的功能为，将新加入的客户端广播给所有的旧有客户端)。
 将项目中获取错误码的方式修改为 `GetLastError();`。
 v0.9
-客户端、服务器端升级为多线程模型
+服务器端升级为多线程模型(初步的多线程)
+客户端的键盘读取指令放到多线程中执行
