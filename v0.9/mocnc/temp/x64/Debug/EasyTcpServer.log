@@ -1,6 +1,0 @@
-﻿E:\VS2019\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(519,5): warning MSB8028: The intermediate directory (E:\Code\mocnc\v0.9\mocnc\temp\x64\Debug\) contains files shared from another project (EasyTcpClient.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  main.cpp
-E:\Code\mocnc\v0.9\mocnc\EasyTcpServer\main.cpp(159,22): warning C4244: 'argument': conversion from 'SOCKET' to 'int', possible loss of data
-E:\Code\mocnc\v0.9\mocnc\EasyTcpServer\main.cpp(180,24): warning C4244: '=': conversion from 'SOCKET' to 'int', possible loss of data
-E:\Code\mocnc\v0.9\mocnc\EasyTcpServer\main.cpp(191,23): warning C4018: '<': signed/unsigned mismatch
-  EasyTcpServer.vcxproj -> E:\Code\mocnc\v0.9\mocnc\bin\x64\Debug\EasyTcpServer.exe
