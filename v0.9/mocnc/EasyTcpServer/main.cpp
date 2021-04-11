@@ -92,7 +92,7 @@ int main() {
   // VC++中使用了新的方法构造socket addr，这种写法会报错
   // _sin.sin_addr.S_un.S_addr = inet_addr("127.0.0.1");
   // VC++构造socket地址的新写法
-  inet_pton(AF_INET, "127.0.0.1", &_sin.sin_addr);
+  inet_pton(AF_INET, "192.168.1.2", &_sin.sin_addr);
   if (bind(_sock, (sockaddr *)&_sin, sizeof(sockaddr_in)) == SOCKET_ERROR) {
     errCode = GetLastError();
     printf("ERROR|%s:%d: bind fail, error: %u.\n", __FILE__, __LINE__, errCode);

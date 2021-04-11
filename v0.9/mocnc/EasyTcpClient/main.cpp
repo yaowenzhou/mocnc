@@ -128,7 +128,7 @@ int main() {
   sockaddr_in _sin = {};
   _sin.sin_family = AF_INET;
   _sin.sin_port = htons(16642);
-  inet_pton(AF_INET, "127.0.0.1", &_sin.sin_addr);
+  inet_pton(AF_INET, "192.168.1.2", &_sin.sin_addr);
   if (connect(_sock, (sockaddr *)&_sin, sizeof(sockaddr_in)) == SOCKET_ERROR) {
     printf("ERROR|%s:%d: connect failed with error: %u\n", __FILE__, __LINE__,
            WSAGetLastError());
