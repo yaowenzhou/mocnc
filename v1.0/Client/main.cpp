@@ -253,12 +253,10 @@ int main()
 // 4. 关闭套接字closesocket
 #ifdef WIN32
   closesocket(_sock);
-#else
-  close(_sock);
-#endif
-#ifdef WIN32
   // 清理WindowsSocket的网络变成环境
   WSACleanup();
+#else
+  close(_sock);
 #endif
   system("pause");
   return 0;
