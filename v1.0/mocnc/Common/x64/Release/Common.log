@@ -1,5 +1,0 @@
-﻿  pch.cpp
-  cross_platform_socket.cpp
-E:\Code\mocnc\v1.0\mocnc\Common\cross_platform_socket.cpp(1,1): warning C4819: The file contains a character that cannot be represented in the current code page (936). Save the file in Unicode format to prevent data loss
-  log.cpp
-  Common.vcxproj -> E:\Code\mocnc\v1.0\mocnc\x64\Release\Common.lib
