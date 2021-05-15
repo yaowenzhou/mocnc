@@ -15,6 +15,7 @@
 #else
 #include <arpa/inet.h>
 #include <unistd.h>
+
 #include <cstring>
 #define SOCKET int
 #define INVALID_SOCKET (SOCKET)(~0)
@@ -26,8 +27,8 @@
 #include <unordered_set>
 // #include <cstdlib>
 
-#include "../Common/data.h"
 #include "../Common/cross_platform_socket.h"
+#include "../Common/data.h"
 #include "../Common/log.h"
 
 // 加入WindowsSocket的静态库，此处采取第二种方法，为工程添加附加依赖项
@@ -57,8 +58,7 @@ void doAccept(SOCKET listenSock) {
     newUser.sock = _cSock;
     for (SOCKET sock : readSockets) {
       // v1.0 linux下服务端不允许send函数给监听socket发送数据
-      if (sock == listenSock)
-        continue;
+      if (sock == listenSock) continue;
       send(sock, (const char* const) & newUser, sizeof(NewUserJoin), 0);
     }
     // 将新连接的通信socket添加到 read_sockets, write_sockets,
@@ -185,8 +185,7 @@ int main() {
       }
       // 处理可读的通信socket
       for (auto var : readSockets) {
-        if (var == listenSock)
-          continue;
+        if (var == listenSock) continue;
         // 如果当前客户端退出，doRet == -1
         // 需要将对应的socket其从相应的集合中移除
         int doRet = doRead(var);
